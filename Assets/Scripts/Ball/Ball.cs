@@ -20,16 +20,12 @@ public class Ball : MonoBehaviour
 	private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
-
-		currentSpeed = startSpeed;
-
-		SetCurentDirection(0f, Vector2.right);
 	}
 
-	public void SetCurentDirection(float factor, Vector2 frontVector)
+	public void Push(float deflectionFactor, Vector2 direction)
 	{
-		var correctFactor = Math.Clamp(factor, -1f, 1f);
-		currentDirection = Quaternion.Euler(0, 0, (deflectionAngle * correctFactor) * (frontVector.x > 0 ? 1 : -1)) * frontVector;
+		var correctFactor = Math.Clamp(deflectionFactor, -1f, 1f);
+		currentDirection = Quaternion.Euler(0, 0, (deflectionAngle * correctFactor) * (direction.x > 0 ? 1 : -1)) * direction;
 		RB.velocity = Vector2.zero;
 		RB.AddForce(currentDirection * currentSpeed, ForceMode2D.Impulse);
 	}
@@ -37,6 +33,14 @@ public class Ball : MonoBehaviour
 	public void IncreaseSpeed()
 	{
 		currentSpeed += currentSpeed >= maxSpeed ? 0 : increaseValue;
+	}
+
+	public void ReloadBall()
+	{
+		RB.velocity = Vector2.zero;
+		transform.position = Vector2.zero;
+		currentSpeed = (currentSpeed - startSpeed) / 2 + startSpeed;
+		StartDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
 	}
 }
 

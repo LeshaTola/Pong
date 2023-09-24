@@ -14,7 +14,7 @@ public class PaddleSurface : MonoBehaviour
 			Debug.Log(distance + " " + factor);
 
 			ball.IncreaseSpeed();
-			ball.SetCurentDirection(factor, -contact.normal);
+			ball.Push(factor, -contact.normal);
 		}
 	}
 }
