@@ -1,0 +1,20 @@
+using UnityEngine;
+
+public class PaddleSurface : MonoBehaviour
+{
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.TryGetComponent(out Ball ball))
+		{
+			var contact = collision.GetContact(0);
+
+			var distance = collision.transform.position.y - transform.position.y;
+			float halfOfPaddle = transform.localScale.y / 2;
+			var factor = distance / halfOfPaddle;
+			Debug.Log(distance + " " + factor);
+
+			ball.IncreaseSpeed();
+			ball.SetCurentDirection(factor, -contact.normal);
+		}
+	}
+}

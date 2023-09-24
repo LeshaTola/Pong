@@ -4,8 +4,6 @@ using UnityEngine;
 /// Keeps constant camera width instead of height, works for both Orthographic & Perspective cameras
 /// Made for tutorial https://youtu.be/0cmxFjP375Y
 /// </summary>
-
-[ExecuteAlways]
 public class CameraConstantWidth : MonoBehaviour
 {
 	public Vector2 DefaultResolution = new Vector2(720, 1280);
