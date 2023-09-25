@@ -11,7 +11,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-	public event Action OnGameReloaded;
+	public event Action<int, int, float> OnGameReloaded;
 
 	[SerializeField] private int ScoreToWin = 5;
 
@@ -21,9 +21,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private Ball ball;
 
 	private GameState state;
-
-	public float PL1score { get; private set; }
-	public float PL2score { get; private set; }
+	private int pl1score;
+	private int pl2score;
 
 	private void Awake()
 	{
@@ -37,7 +36,8 @@ public class GameManager : MonoBehaviour
 		switch (state)
 		{
 			case GameState.Preparation:
-				state = GameState.Playing;
+				ReloadGame();
+				state = GameState.GameStart;
 				break;
 			case GameState.GameStart:
 				ball.Push(0f, ball.StartDirection);
@@ -55,19 +55,19 @@ public class GameManager : MonoBehaviour
 
 	private void OnPL2Goaled()
 	{
-		PL2score++;
+		pl2score++;
 		ReloadGame();
 	}
 
 	private void OnPL1Goaled()
 	{
-		PL1score++;
+		pl1score++;
 		ReloadGame();
 	}
 
 	private void ReloadGame()
 	{
-		if (PL1score == ScoreToWin || PL2score == ScoreToWin)
+		if (pl1score == ScoreToWin || pl2score == ScoreToWin)
 		{
 			state = GameState.GameOver;
 		}
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 		{
 			ball.ReloadBall();
 			state = GameState.Preparation;
-			OnGameReloaded?.Invoke();
+			OnGameReloaded?.Invoke(pl1score, pl2score, ball.CurrentSpeed);
 		}
 	}
 }

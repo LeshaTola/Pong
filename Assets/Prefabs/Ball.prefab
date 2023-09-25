@@ -113,7 +113,7 @@ MonoBehaviour:
   startSpeed: 10
   maxSpeed: 20
   increaseValue: 0.1
-  deflectionAngle: 70
+  deflectionAngle: 45
 --- !u!96 &8738271269972355052
 TrailRenderer:
   serializedVersion: 3

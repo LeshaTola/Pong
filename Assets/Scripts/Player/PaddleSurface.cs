@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PaddleSurface : MonoBehaviour
 {
+	[SerializeField] private Transform bounceDirection;
+
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.TryGetComponent(out Ball ball))
@@ -14,7 +16,7 @@ public class PaddleSurface : MonoBehaviour
 			Debug.Log(distance + " " + factor);
 
 			ball.IncreaseSpeed();
-			ball.Push(factor, -contact.normal);
+			ball.Push(factor, bounceDirection.right);
 		}
 	}
 }
