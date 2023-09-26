@@ -27,7 +27,7 @@ public class TopBar : MonoBehaviour
 
 	private void OnSpeedChanged(float speed)
 	{
-		UpdateSpeed(speed);
+		UpdateSpeed(Mathf.RoundToInt(speed * 10));
 	}
 
 	private void UpdateUI(int pl1Score, int pl2Score, float speed)
