@@ -12,43 +12,64 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
 	public event Action<int, int, float> OnGameReloaded;
+	public event EventHandler OnStateChanged;
 
 	[SerializeField] private int ScoreToWin = 5;
+	[SerializeField] private float PreparationTime = 3f;
 
 	[SerializeField] private GoalZone PL1Zone;
 	[SerializeField] private GoalZone PL2Zone;
 
 	[SerializeField] private Ball ball;
 
-	private GameState state;
 	private int pl1score;
 	private int pl2score;
 
-	private void Awake()
+	public float PreparationTimer { get; private set; }
+	public GameState State { get; private set; }
+
+	private void OnEnable()
 	{
-		state = GameState.Preparation;
 		PL1Zone.OnGoaled += OnPL1Goaled;
-		PL2Zone.OnGoaled += OnPL2Goaled; ;
+		PL2Zone.OnGoaled += OnPL2Goaled;
+	}
+
+	private void OnDisable()
+	{
+		PL1Zone.OnGoaled -= OnPL1Goaled;
+		PL2Zone.OnGoaled -= OnPL2Goaled;
+	}
+
+	private void Start()
+	{
+		PreparationTimer = PreparationTime;
+		ReloadGame();
 	}
 
 	private void Update()
 	{
-		switch (state)
+		switch (State)
 		{
 			case GameState.Preparation:
-				ReloadGame();
-				state = GameState.GameStart;
+				PreparationTimer -= Time.deltaTime;
+				if (PreparationTimer <= 0)
+				{
+					PreparationTimer = PreparationTime;
+					State = GameState.GameStart;
+					OnStateChanged?.Invoke(this, EventArgs.Empty);
+				}
 				break;
 			case GameState.GameStart:
 				ball.Push(0f, ball.StartDirection);
-				state = GameState.Playing;
+				State = GameState.Playing;
+				OnStateChanged?.Invoke(this, EventArgs.Empty);
 				break;
 			case GameState.Playing:
 
 				break;
 			case GameState.GameOver:
 
-				state = GameState.GameOver;
+				State = GameState.GameOver;
 				break;
 		}
 	}
@@ -69,12 +90,14 @@ public class GameManager : MonoBehaviour
 	{
 		if (pl1score == ScoreToWin || pl2score == ScoreToWin)
 		{
-			state = GameState.GameOver;
+			State = GameState.GameOver;
+			OnStateChanged?.Invoke(this, EventArgs.Empty);
 		}
 		else
 		{
 			ball.ReloadBall();
-			state = GameState.Preparation;
+			State = GameState.Preparation;
+			OnStateChanged?.Invoke(this, EventArgs.Empty);
 			OnGameReloaded?.Invoke(pl1score, pl2score, ball.CurrentSpeed);
 		}
 	}
