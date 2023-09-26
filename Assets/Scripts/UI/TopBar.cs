@@ -5,6 +5,7 @@ public class TopBar : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI scoreText;
 	[SerializeField] private TextMeshProUGUI speedText;
+
 	[SerializeField] private GameManager gameManager;
 	[SerializeField] private Ball ball;
 
