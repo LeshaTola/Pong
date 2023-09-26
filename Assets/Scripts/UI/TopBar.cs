@@ -27,7 +27,7 @@ public class TopBar : MonoBehaviour
 
 	private void OnSpeedChanged(float speed)
 	{
-		UpdateSpeed(Mathf.RoundToInt(speed * 10));
+		UpdateSpeed(speed);
 	}
 
 	private void UpdateUI(int pl1Score, int pl2Score, float speed)
@@ -43,6 +43,7 @@ public class TopBar : MonoBehaviour
 
 	private void UpdateSpeed(float speed)
 	{
-		speedText.text = $"Speed: {speed}";
+		int scoreMultiplayer = 10;
+		speedText.text = $"Speed: {Mathf.RoundToInt(speed * scoreMultiplayer)}";
 	}
 }
