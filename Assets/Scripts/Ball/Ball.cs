@@ -11,9 +11,9 @@ public class Ball : MonoBehaviour
 	[SerializeField] private float maxSpeed;
 	[SerializeField] private float increaseValue;
 	[Header("Angle")]
-	[SerializeField, Range(0, 90)] private int deflectionAngle;
+	[SerializeField, Range(0, 45)] private int deflectionAngle;
 
-	private Rigidbody2D RB;
+	private Rigidbody2D rigidBody;
 	private Vector2 currentDirection;
 
 	public float CurrentSpeed { get; private set; }
@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
 
 	private void Awake()
 	{
-		RB = GetComponent<Rigidbody2D>();
+		rigidBody = GetComponent<Rigidbody2D>();
 	}
 
 	public void Push(float deflectionFactor, Vector2 direction)
@@ -29,8 +29,8 @@ public class Ball : MonoBehaviour
 		var correctFactor = Math.Clamp(deflectionFactor, -1f, 1f);
 		currentDirection = Quaternion.Euler(0, 0, (deflectionAngle * correctFactor) * (direction == Vector2.right ? 1 : -1)) * direction;
 		currentDirection = currentDirection.normalized;
-		RB.velocity = Vector2.zero;
-		RB.AddForce(currentDirection * CurrentSpeed, ForceMode2D.Impulse);
+		rigidBody.velocity = Vector2.zero;
+		rigidBody.AddForce(currentDirection * CurrentSpeed, ForceMode2D.Impulse);
 	}
 
 	public void IncreaseSpeed()
@@ -41,7 +41,7 @@ public class Ball : MonoBehaviour
 
 	public void ReloadBall()
 	{
-		RB.velocity = Vector2.zero;
+		rigidBody.velocity = Vector2.zero;
 		transform.position = Vector2.zero;
 		if (!CurrentSpeed.Equals(0))
 		{

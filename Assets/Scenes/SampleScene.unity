@@ -2404,11 +2404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813920609704911614, guid: 001e11847fc5b5444b656774e7dec9a9, type: 3}
       propertyPath: startSpeed
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8813920609704911614, guid: 001e11847fc5b5444b656774e7dec9a9, type: 3}
       propertyPath: deflectionAngle
-      value: 90
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
