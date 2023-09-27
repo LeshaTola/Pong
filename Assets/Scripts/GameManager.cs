@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 	public event Action<int, int, float> OnGameReloaded;
 	public event EventHandler OnStateChanged;
 
-	[SerializeField] private int ScoreToWin = 5;
+	[field: SerializeField] public int ScoreToWin { get; private set; } = 5;
 	[SerializeField] private float PreparationTime = 3f;
 
 	[SerializeField] private GoalZone PL1Zone;
@@ -22,9 +22,8 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Ball ball;
 
-	private int pl1score;
-	private int pl2score;
-
+	public int Pl1score { get; private set; }
+	public int Pl2score { get; private set; }
 	public float PreparationTimer { get; private set; }
 	public GameState State { get; private set; }
 
@@ -68,27 +67,30 @@ public class GameManager : MonoBehaviour
 
 				break;
 			case GameState.GameOver:
-
-				State = GameState.GameOver;
 				break;
 		}
 	}
 
+	public void RestartGame()
+	{
+		Loader.Load(Loader.Scene.GameScene);
+	}
+
 	private void OnPL2Goaled()
 	{
-		pl2score++;
+		Pl1score++;
 		ReloadGame();
 	}
 
 	private void OnPL1Goaled()
 	{
-		pl1score++;
+		Pl2score++;
 		ReloadGame();
 	}
 
 	private void ReloadGame()
 	{
-		if (pl1score == ScoreToWin || pl2score == ScoreToWin)
+		if (Pl1score == ScoreToWin || Pl2score == ScoreToWin)
 		{
 			State = GameState.GameOver;
 			OnStateChanged?.Invoke(this, EventArgs.Empty);
@@ -98,7 +100,7 @@ public class GameManager : MonoBehaviour
 			ball.ReloadBall();
 			State = GameState.Preparation;
 			OnStateChanged?.Invoke(this, EventArgs.Empty);
-			OnGameReloaded?.Invoke(pl1score, pl2score, ball.CurrentSpeed);
+			OnGameReloaded?.Invoke(Pl1score, Pl2score, ball.CurrentSpeed);
 		}
 	}
 }
