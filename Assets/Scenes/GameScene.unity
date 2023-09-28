@@ -3813,6 +3813,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4393203421337345452, guid: f27e75d8fc437f04980b50b67bea9494, type: 3}
   m_PrefabInstance: {fileID: 501944516117536916}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7320951419079849154
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454982001846718106, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7616035318253491782, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
+      propertyPath: m_Name
+      value: DefendBonus
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c17995ecc25f84408ea59d22a9227c8, type: 3}
 --- !u!1 &8303873155264243989
 GameObject:
   m_ObjectHideFlags: 0

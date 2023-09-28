@@ -55,5 +55,25 @@ public class Input : MonoBehaviour
 		{
 			firstControllable.Move(Vector2.zero);
 		}
+
+		if (UnityEngine.Input.GetKeyDown(KeyCode.A))
+		{
+			firstControllable.Defend();
+		}
+
+		if (UnityEngine.Input.GetKeyDown(KeyCode.D))
+		{
+			firstControllable.Attack();
+		}
+
+		if (UnityEngine.Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			secondControllable.Defend();
+		}
+
+		if (UnityEngine.Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			secondControllable.Attack();
+		}
 	}
 }

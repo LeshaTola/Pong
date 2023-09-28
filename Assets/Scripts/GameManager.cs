@@ -97,6 +97,11 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+			if (ball.IsCharged)
+			{
+				ball.LastPlayer.AttackBonus.EndBonus();
+			}
+
 			ball.ReloadBall();
 			State = GameState.Preparation;
 			OnStateChanged?.Invoke(this, EventArgs.Empty);
