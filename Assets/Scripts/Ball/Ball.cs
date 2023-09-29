@@ -16,8 +16,10 @@ public class Ball : MonoBehaviour
 	private Rigidbody2D rigidBody;
 	private Vector2 currentDirection;
 
+	public Player LastPlayer { get; set; }
 	public float CurrentSpeed { get; private set; }
 	public Vector2 StartDirection { get; private set; }
+	public bool IsCharged { get; set; } = false;
 
 	private void Awake()
 	{
@@ -35,11 +37,24 @@ public class Ball : MonoBehaviour
 
 	public void IncreaseSpeed()
 	{
-		CurrentSpeed += CurrentSpeed >= maxSpeed ? 0 : increaseValue;
+		IncreaseSpeed(increaseValue);
+	}
+
+	public void IncreaseSpeed(float increaseValue)
+	{
+		if (!IsCharged)
+		{
+			CurrentSpeed += CurrentSpeed >= maxSpeed ? 0 : increaseValue;
+		}
+		else
+		{
+			CurrentSpeed += increaseValue;
+		}
+
 		OnSpeedChanged?.Invoke(CurrentSpeed);
 	}
 
-	public void ReloadBall()
+	public void Reload()
 	{
 		rigidBody.velocity = Vector2.zero;
 		transform.position = Vector2.zero;

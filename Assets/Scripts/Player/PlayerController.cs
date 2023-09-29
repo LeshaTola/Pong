@@ -1,16 +1,18 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Player))]
 public class PlayerController : MonoBehaviour, IControllable
 {
 	[SerializeField] private float speed;
 
 	private Rigidbody2D RB;
 	private Vector2 moveDir;
+	private Player player;
 
 	private void Awake()
 	{
 		RB = GetComponent<Rigidbody2D>();
+		player = GetComponent<Player>();
 	}
 
 	private void FixedUpdate()
@@ -25,12 +27,12 @@ public class PlayerController : MonoBehaviour, IControllable
 
 	public void Attack()
 	{
-		throw new System.NotImplementedException();
+		player.Attack();
 	}
 
 	public void Defend()
 	{
-		throw new System.NotImplementedException();
+		player.Defend();
 	}
 
 	private void MoveIternal()
