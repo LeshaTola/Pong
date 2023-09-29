@@ -3,6 +3,7 @@ using UnityEngine;
 
 public enum GameState
 {
+	WaitingForRediness,
 	Preparation,
 	GameStart,
 	Playing,
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GoalZone PL2Zone;
 
 	[SerializeField] private Ball ball;
+	[SerializeField] private BonusManager bonusManager;
 
 	public int Pl1score { get; private set; }
 	public int Pl2score { get; private set; }
@@ -42,13 +44,17 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		PreparationTimer = PreparationTime;
-		ReloadGame();
+		//ReloadGame();
 	}
 
 	private void Update()
 	{
 		switch (State)
 		{
+			case GameState.WaitingForRediness:
+				ReloadGame();
+				State = GameState.Preparation;
+				break;
 			case GameState.Preparation:
 				PreparationTimer -= Time.deltaTime;
 				if (PreparationTimer <= 0)
@@ -102,7 +108,9 @@ public class GameManager : MonoBehaviour
 				ball.LastPlayer.AttackBonus.EndBonus();
 			}
 
-			ball.ReloadBall();
+			bonusManager.Reload();
+			ball.Reload();
+
 			State = GameState.Preparation;
 			OnStateChanged?.Invoke(this, EventArgs.Empty);
 			OnGameReloaded?.Invoke(Pl1score, Pl2score, ball.CurrentSpeed);

@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public event Action<int> OnBonusCountChanged;
+	public event Action<PlayerEnum> OnBallCollision;
+
 	[SerializeField] private Transform bounceDirection;
 
 	[field: SerializeField] public Bonus AttackBonus { get; private set; }
+	[field: SerializeField] public PlayerEnum PlayerEnum { get; private set; }
 	[field: SerializeField] public Bonus DefendBonus { get; private set; }
 	[field: SerializeField] public int MaxBonusCount { get; private set; } = 2;
 
@@ -33,7 +38,7 @@ public class Player : MonoBehaviour
 			}
 
 			Deflect(collision);
-
+			OnBallCollision?.Invoke(PlayerEnum);
 			ball.LastPlayer = this;
 		}
 	}
@@ -48,6 +53,8 @@ public class Player : MonoBehaviour
 	public void AddBonus(int count)
 	{
 		bonusCount += count;
+		bonusCount = bonusCount > MaxBonusCount ? MaxBonusCount : bonusCount;
+		OnBonusCountChanged?.Invoke(bonusCount);
 	}
 
 	public void ChargeBall(float value)
@@ -80,17 +87,18 @@ public class Player : MonoBehaviour
 		{
 			AttackBonus.StartBonus();
 			bonusCount--;
+			OnBonusCountChanged?.Invoke(bonusCount);
 		}
 		isAttackBonus = false;
 	}
 
 	public void Defend()
 	{
-
 		if (bonusCount > 0 && !DefendBonus.IsActive)
 		{
 			DefendBonus.StartBonus();
 			bonusCount--;
+			OnBonusCountChanged?.Invoke(bonusCount);
 		}
 	}
 

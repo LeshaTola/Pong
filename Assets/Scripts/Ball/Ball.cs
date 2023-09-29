@@ -54,7 +54,7 @@ public class Ball : MonoBehaviour
 		OnSpeedChanged?.Invoke(CurrentSpeed);
 	}
 
-	public void ReloadBall()
+	public void Reload()
 	{
 		rigidBody.velocity = Vector2.zero;
 		transform.position = Vector2.zero;
