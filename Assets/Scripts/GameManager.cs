@@ -13,6 +13,8 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
 	public event Action<int, int, float> OnGameReloaded;
+	public event Action OnGamePaused;
+	public event Action OnGameUnaused;
 	public event EventHandler OnStateChanged;
 
 	[field: SerializeField] public int ScoreToWin { get; private set; } = 5;
@@ -92,6 +94,30 @@ public class GameManager : MonoBehaviour
 	{
 		Pl2score++;
 		ReloadGame();
+	}
+
+	public void TogglePause()
+	{
+		if (Time.timeScale == 0)
+		{
+			UnpauseGame();
+		}
+		else
+		{
+			PauseGame();
+		}
+	}
+
+	public void PauseGame()
+	{
+		OnGamePaused?.Invoke();
+		Time.timeScale = 0f;
+	}
+
+	public void UnpauseGame()
+	{
+		OnGameUnaused?.Invoke();
+		Time.timeScale = 1f;
 	}
 
 	private void ReloadGame()

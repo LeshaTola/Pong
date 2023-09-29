@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceDirection: {fileID: 4656789824920368186}
+  bounceParticleTemplate: {fileID: 0}
   <AttackBonus>k__BackingField: {fileID: 3793953731721525789}
+  <PlayerEnum>k__BackingField: 0
   <DefendBonus>k__BackingField: {fileID: 5366820176356412336}
   <MaxBonusCount>k__BackingField: 2
 --- !u!1 &5434406998190001051
@@ -182,6 +184,7 @@ GameObject:
   - component: {fileID: 2346745363451615426}
   - component: {fileID: 2146142865657662924}
   - component: {fileID: 8588460295716604491}
+  - component: {fileID: 6276925089522005204}
   m_Layer: 0
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -269,6 +272,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2146142865657662924}
+  <PlayerEnum>k__BackingField: 0
+--- !u!114 &6276925089522005204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8567100617872235232}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146a559e6644b874e90f0d783866e752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPSTemplate: {fileID: 1767802540645072331, guid: f66a945730a801445a4fbec9c6bb8d81, type: 3}
+  player: {fileID: 2597824168805823019}
 --- !u!1001 &1770580453563961146
 PrefabInstance:
   m_ObjectHideFlags: 0

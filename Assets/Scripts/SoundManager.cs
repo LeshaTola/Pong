@@ -15,11 +15,11 @@ public class SoundManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		firstPlayer.OnAttacked += OnAttacked;
+		firstPlayer.OnAttackStarted += OnAttacked;
 		firstPlayer.OnDefendStarted += OnDefendStarted;
 		firstPlayer.OnDefendEnded += OnDefendEnded;
 
-		secondPlayer.OnAttacked += OnAttacked;
+		secondPlayer.OnAttackStarted += OnAttacked;
 		secondPlayer.OnDefendStarted += OnDefendStarted;
 		secondPlayer.OnDefendEnded += OnDefendEnded;
 
@@ -35,11 +35,11 @@ public class SoundManager : MonoBehaviour
 
 	private void OnDisable()
 	{
-		firstPlayer.OnAttacked -= OnAttacked;
+		firstPlayer.OnAttackStarted -= OnAttacked;
 		firstPlayer.OnDefendStarted -= OnDefendStarted;
 		firstPlayer.OnDefendEnded -= OnDefendEnded;
 
-		secondPlayer.OnAttacked -= OnAttacked;
+		secondPlayer.OnAttackStarted -= OnAttacked;
 		secondPlayer.OnDefendStarted -= OnDefendStarted;
 		secondPlayer.OnDefendEnded -= OnDefendEnded;
 

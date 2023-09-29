@@ -10,6 +10,8 @@ public class Input : MonoBehaviour
 {
 	[SerializeField] private GameObject firstPlayer;
 	[SerializeField] private GameObject secondPlayer;
+
+	[SerializeField] private GameManager gameManager;
 	//[SerializeField] private InputType inputType;
 
 	private IControllable firstControllable;
@@ -74,6 +76,11 @@ public class Input : MonoBehaviour
 		if (UnityEngine.Input.GetKeyDown(KeyCode.LeftArrow))
 		{
 			secondControllable.Attack();
+		}
+
+		if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
+		{
+			gameManager.TogglePause();
 		}
 	}
 }

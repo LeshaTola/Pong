@@ -6,11 +6,15 @@ public class Player : MonoBehaviour
 	public event Action<int> OnBonusCountChanged;
 	public event Action<PlayerEnum> OnBallCollision;
 
-	public event Action OnAttacked;
+	public event Action OnAttackStarted;
+	public event Action OnAttackEnded;
 	public event Action OnDefendStarted;
 	public event Action OnDefendEnded;
 
 	[SerializeField] private Transform bounceDirection;
+	[SerializeField] private ParticleSystem bounceParticleTemplate;
+	[SerializeField] private Ball ball;
+
 
 	[field: SerializeField] public Bonus AttackBonus { get; private set; }
 	[field: SerializeField] public PlayerEnum PlayerEnum { get; private set; }
@@ -20,7 +24,7 @@ public class Player : MonoBehaviour
 
 	private int bonusCount;
 	private bool isAttackBonus;
-	private Ball ball;
+	private ParticleSystem bounceParticle;
 
 	private void Awake()
 	{
@@ -30,7 +34,7 @@ public class Player : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.TryGetComponent(out ball))
+		if (collision.gameObject.TryGetComponent(out Ball anotherBall))
 		{
 			if (ball.IsCharged)
 			{
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour
 			if (isAttackBonus)
 			{
 				AttackInternal();
+				OnAttackEnded?.Invoke();
 			}
 
 			Deflect(collision);
@@ -83,7 +88,7 @@ public class Player : MonoBehaviour
 			{
 				AttackInternal();
 			}
-			OnAttacked?.Invoke();
+			OnAttackStarted?.Invoke();
 			bonusCount--;
 			OnBonusCountChanged?.Invoke(bonusCount);
 		}
@@ -113,6 +118,16 @@ public class Player : MonoBehaviour
 		float halfOfPaddle = transform.localScale.y / 2;
 		var factor = distance / halfOfPaddle;
 		Debug.Log(distance + " " + factor);
+
+
+		if (bounceParticle == null)
+		{
+			bounceParticle = Instantiate(bounceParticleTemplate, transform);
+		}
+
+		bounceParticle.transform.position = contact.point;
+		bounceParticle.Play();
+		//Destroy(particle, bounceParticle.main.startLifetime.constant);
 
 		ball.IncreaseSpeed();
 		ball.Push(factor, bounceDirection.right);
