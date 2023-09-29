@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnTime: 1
+  <IsActivateOnTouch>k__BackingField: 0
   durationTime: 5
-  sizeMultiplier: 1.2
+  sizeMultiplier: 1.5

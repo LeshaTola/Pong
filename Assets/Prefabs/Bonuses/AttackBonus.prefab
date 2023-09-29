@@ -47,4 +47,4 @@ MonoBehaviour:
   isOnTime: 0
   <IsActivateOnTouch>k__BackingField: 1
   durationTime: 5
-  speedBonus: 10
+  speedBonus: 7

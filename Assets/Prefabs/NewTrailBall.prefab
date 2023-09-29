@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 180097992561891629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1828462298037759955}
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSpeed: 10
   maxSpeed: 20
-  increaseValue: 0.1
+  increaseValue: 0.2
   deflectionAngle: 45
 --- !u!96 &8738271269972355052
 TrailRenderer:
@@ -187,8 +187,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
       key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 1, g: 1, b: 1, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
