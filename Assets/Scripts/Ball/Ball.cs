@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
 	public event Action OnWallCollision;
 
 	public event Action OnBallCharged;
+	public event Action OnBallUncharged;
 	public event Action<float> OnSpeedChanged;
 
 	[Header("Speed")]
@@ -77,14 +78,15 @@ public class Ball : MonoBehaviour
 	public void ChargeBall(float value)
 	{
 		IncreaseSpeed(value);
-		OnBallCharged?.Invoke();
 		IsCharged = true;
+		OnBallCharged?.Invoke();
 	}
 
 	public void UnchargeBall(float value)
 	{
 		IncreaseSpeed(-value);
 		IsCharged = false;
+		OnBallUncharged?.Invoke();
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8485589331411015400}
   - component: {fileID: 937955252699760536}
   - component: {fileID: 2660255824066855253}
+  - component: {fileID: 4124175768207490483}
   m_Layer: 0
   m_Name: BonusVisual
   m_TagString: Untagged
@@ -99,6 +100,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 937955252699760536}
   <PlayerEnum>k__BackingField: 0
+--- !u!114 &4124175768207490483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380877939704820590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac72a91693b39a4a8395d40ee754432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  picedUpPSTemplate: {fileID: 0}
+  bonusTrigger: {fileID: 1624067527903810533}
 --- !u!1 &7391849747704859151
 GameObject:
   m_ObjectHideFlags: 0

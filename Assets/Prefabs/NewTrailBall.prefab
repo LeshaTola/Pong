@@ -237,6 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1828462298037759955}
   - component: {fileID: 8695344000319177637}
+  - component: {fileID: 8102765524604637358}
   m_Layer: 0
   m_Name: BallVisual
   m_TagString: Untagged
@@ -311,3 +312,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8102765524604637358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8427691311766575220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a496d518305244a9145935c96ba4d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargePSTemplate: {fileID: 6317952280008037349, guid: 80ca727e6a941df4992b93475fb80163, type: 3}
+  ball: {fileID: 8813920609704911614}
