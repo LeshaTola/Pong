@@ -1,23 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button optionsButton;
-    [SerializeField] private Button exitButton;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField] private Button playButton;
+	[SerializeField] private Button optionsButton;
+	[SerializeField] private Button exitButton;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void Awake()
+	{
+		playButton.onClick.AddListener(() =>
+		{
+			Loader.Load(Loader.Scene.GameScene);
+		});
+
+		exitButton.onClick.AddListener(() =>
+		{
+			Application.Quit();
+		});
+	}
 }
