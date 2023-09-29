@@ -6,13 +6,13 @@ public class AttackBonus : Bonus
 
 	public override void StartBonus()
 	{
-		player.ChargeBall(speedBonus);
+		player.Ball.ChargeBall(speedBonus);
 		base.StartBonus();
 	}
 
 	public override void EndBonus()
 	{
-		player.UnchargeBall(speedBonus);
+		player.Ball.UnchargeBall(speedBonus);
 		base.EndBonus();
 	}
 

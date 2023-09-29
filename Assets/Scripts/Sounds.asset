@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1551b2bd399734a85dc890f04cd1b4, type: 3}
+  m_Name: Sounds
+  m_EditorClassIdentifier: 
+  Attack:
+  - {fileID: 8300000, guid: 76b05c6c91187354ab301b353b3a6a74, type: 3}
+  - {fileID: 8300000, guid: fa97b554fcc7df2428bf263f9310a274, type: 3}
+  BallCharge:
+  - {fileID: 8300000, guid: 1c455e5a37bc38e4d9a41e72e48eff4c, type: 3}
+  - {fileID: 8300000, guid: ac58b9c88e5fee64d83295f7c9c563eb, type: 3}
+  DefendStart:
+  - {fileID: 8300000, guid: d43c4b47696ecdb499162d9cb1e8096b, type: 3}
+  - {fileID: 8300000, guid: ace5b1360c5d4b944821a2c5b3104110, type: 3}
+  DefendEnd:
+  - {fileID: 8300000, guid: 3a277235c8a7a1a4f95c5d81b8d02148, type: 3}
+  - {fileID: 8300000, guid: 262d5d50417d38e48b19c30756d607ac, type: 3}
+  Goal:
+  - {fileID: 8300000, guid: 0a46aeabe8cfa0043bb9f8d99ac35bbe, type: 3}
+  - {fileID: 8300000, guid: 981141c6165a81940a8e71c85c44b8ad, type: 3}
+  - {fileID: 8300000, guid: 9e57fd890bff9804eb4ac358b92791ca, type: 3}
+  Bonus:
+  - {fileID: 8300000, guid: 846b2158aa440474aab302d8782ec550, type: 3}
+  - {fileID: 8300000, guid: 0fb6d39e68b2f2648aa3e6d5afa79b37, type: 3}
+  PlayerHit:
+  - {fileID: 8300000, guid: aa30687bd446a02478c350ba3f403698, type: 3}
+  - {fileID: 8300000, guid: e3db5046950a8b541afbcc6440ec99f7, type: 3}
+  - {fileID: 8300000, guid: e2ad145036eff8745a565dc5c51741e9, type: 3}
+  WallHit:
+  - {fileID: 8300000, guid: 020ab2839d5b5c84aa8caf4a5a33abd7, type: 3}
+  - {fileID: 8300000, guid: 0805ddca5c16b5b46b35d8050d74e154, type: 3}
+  - {fileID: 8300000, guid: 9fc7b40b1368f964b974102e8f924114, type: 3}
+  - {fileID: 8300000, guid: 1d48c61dcc190b642bdbf5d0b38eaa6d, type: 3}

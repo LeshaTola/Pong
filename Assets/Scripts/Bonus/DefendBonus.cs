@@ -6,13 +6,13 @@ public class DefendBonus : Bonus
 
 	public override void StartBonus()
 	{
-		player.MultiplySize(sizeMultiplier);
+		player.Expand(sizeMultiplier);
 		base.StartBonus();
 	}
 
 	public override void EndBonus()
 	{
-		player.MultiplySize(1 / sizeMultiplier);
+		player.Shrink(sizeMultiplier);
 		base.EndBonus();
 	}
 }

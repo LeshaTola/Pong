@@ -4,6 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Ball : MonoBehaviour
 {
+	public event Action OnPlayerCollision;
+	public event Action OnGoalZoneCollision;
+	public event Action OnWallCollision;
+
+	public event Action OnBallCharged;
 	public event Action<float> OnSpeedChanged;
 
 	[Header("Speed")]
@@ -66,7 +71,36 @@ public class Ball : MonoBehaviour
 		{
 			CurrentSpeed = startSpeed;
 		}
-		StartDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
+		StartDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));//TODO: FIX	
+	}
+
+	public void ChargeBall(float value)
+	{
+		IncreaseSpeed(value);
+		OnBallCharged?.Invoke();
+		IsCharged = true;
+	}
+
+	public void UnchargeBall(float value)
+	{
+		IncreaseSpeed(-value);
+		IsCharged = false;
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.TryGetComponent(out Player player))
+		{
+			OnPlayerCollision?.Invoke();
+		}
+		else if (collision.gameObject.TryGetComponent(out GoalZone zone))
+		{
+			OnGoalZoneCollision?.Invoke();
+		}
+		else
+		{
+			OnWallCollision?.Invoke();
+		}
 	}
 }
 

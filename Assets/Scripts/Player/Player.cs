@@ -6,12 +6,17 @@ public class Player : MonoBehaviour
 	public event Action<int> OnBonusCountChanged;
 	public event Action<PlayerEnum> OnBallCollision;
 
+	public event Action OnAttacked;
+	public event Action OnDefendStarted;
+	public event Action OnDefendEnded;
+
 	[SerializeField] private Transform bounceDirection;
 
 	[field: SerializeField] public Bonus AttackBonus { get; private set; }
 	[field: SerializeField] public PlayerEnum PlayerEnum { get; private set; }
 	[field: SerializeField] public Bonus DefendBonus { get; private set; }
 	[field: SerializeField] public int MaxBonusCount { get; private set; } = 2;
+	public Ball Ball { get => ball; private set => ball = value; }
 
 	private int bonusCount;
 	private bool isAttackBonus;
@@ -43,11 +48,20 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	public void MultiplySize(float multiplier)
+	public void Expand(float multiplier)
 	{
 		var newLocalScale = transform.localScale;
 		newLocalScale.y *= multiplier;
 		transform.localScale = newLocalScale;
+		OnDefendStarted?.Invoke();
+	}
+
+	public void Shrink(float multiplier)
+	{
+		var newLocalScale = transform.localScale;
+		newLocalScale.y /= multiplier;
+		transform.localScale = newLocalScale;
+		OnDefendEnded?.Invoke();
 	}
 
 	public void AddBonus(int count)
@@ -57,38 +71,27 @@ public class Player : MonoBehaviour
 		OnBonusCountChanged?.Invoke(bonusCount);
 	}
 
-	public void ChargeBall(float value)
-	{
-		ball.IncreaseSpeed(value);
-		ball.IsCharged = true;
-	}
-
-	public void UnchargeBall(float value)
-	{
-		ball.IncreaseSpeed(-value);
-		ball.IsCharged = false;
-	}
-
 	public void Attack()
 	{
-		if (AttackBonus.IsActivateOnTouch)
+		if (bonusCount > 0 && !AttackBonus.IsActive && !isAttackBonus)
 		{
-			isAttackBonus = true;
-		}
-		else
-		{
-			AttackInternal();
+			if (AttackBonus.IsActivateOnTouch)
+			{
+				isAttackBonus = true;
+			}
+			else
+			{
+				AttackInternal();
+			}
+			OnAttacked?.Invoke();
+			bonusCount--;
+			OnBonusCountChanged?.Invoke(bonusCount);
 		}
 	}
 
 	private void AttackInternal()
 	{
-		if (bonusCount > 0 && !AttackBonus.IsActive)
-		{
-			AttackBonus.StartBonus();
-			bonusCount--;
-			OnBonusCountChanged?.Invoke(bonusCount);
-		}
+		AttackBonus.StartBonus();
 		isAttackBonus = false;
 	}
 
