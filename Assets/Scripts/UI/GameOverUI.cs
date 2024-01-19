@@ -1,6 +1,8 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -43,10 +45,31 @@ public class GameOverUI : MonoBehaviour
 		}
 	}
 
-	private void UpdateUI()
+	private async void UpdateUI()
 	{
+		while (!YandexGame.SDKEnabled)
+		{
+			await Task.Delay(200);
+		}
+
+		var lang = YandexGame.EnvironmentData.language;
+
+		string firstPlayer = "";
+		string secondPlayer = "";
+		switch (lang)
+		{
+			case "ru":
+				firstPlayer = "Первый игрок победил";
+				secondPlayer = "Второй игрок победил";
+				break;
+			case "en":
+				firstPlayer = "First player wins";
+				secondPlayer = "Second player wins";
+				break;
+		}
+
 		scoreText.text = $"{gameManager.Pl1score}:{gameManager.Pl2score}";
-		winnerText.text = gameManager.Pl1score == gameManager.ScoreToWin ? "first player" : "second player" + " wins";
+		winnerText.text = gameManager.Pl1score == gameManager.ScoreToWin ? firstPlayer : secondPlayer;
 	}
 
 	private void Show()

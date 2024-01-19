@@ -4,11 +4,17 @@ using UnityEngine.UI;
 public class EscMenuUI : MonoBehaviour
 {
 	[SerializeField] private Button continueButton;
+	[SerializeField] private Button restartButton;
 	[SerializeField] private Button exitButton;
 	[SerializeField] private GameManager gameManager;
 
 	private void Awake()
 	{
+		restartButton.onClick.AddListener(() =>
+		{
+			gameManager.RestartGame();
+		});
+
 		continueButton.onClick.AddListener(() =>
 		{
 			gameManager.UnpauseGame();

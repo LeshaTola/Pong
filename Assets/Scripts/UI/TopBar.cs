@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using YG;
 
 public class TopBar : MonoBehaviour
 {
@@ -81,10 +83,28 @@ public class TopBar : MonoBehaviour
 		scoreText.text = $"{pl1Score}:{pl2Score}";
 	}
 
-	private void UpdateSpeed(float speed)
+	private async void UpdateSpeed(float speed)
 	{
+		while (!YandexGame.SDKEnabled)
+		{
+			await Task.Delay(200);
+		}
+
+		var lang = YandexGame.EnvironmentData.language;
+
+		string speedString = "";
+		switch (lang)
+		{
+			case "ru":
+				speedString = "Скорость";
+				break;
+			case "en":
+				speedString = "Speed";
+				break;
+		}
+
 		int scoreMultiplayer = 10;
-		speedText.text = $"Speed: {Mathf.RoundToInt(speed * scoreMultiplayer)}";
+		speedText.text = $"{speedString}: {Mathf.RoundToInt(speed * scoreMultiplayer)}";
 	}
 
 	private void OnFirstPlayerBonusCountChanged(int index)

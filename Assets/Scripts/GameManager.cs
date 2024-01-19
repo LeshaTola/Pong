@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using YG;
 
 public enum GameState
 {
@@ -75,12 +76,14 @@ public class GameManager : MonoBehaviour
 
 				break;
 			case GameState.GameOver:
+				YandexGame.FullscreenShow();
 				break;
 		}
 	}
 
 	public void RestartGame()
 	{
+		UnpauseGame();
 		Loader.Load(Loader.Scene.GameScene);
 	}
 
