@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 {
 	public event Action<int, int, float> OnGameReloaded;
 	public event Action OnGamePaused;
-	public event Action OnGameUnaused;
+	public event Action OnGameUnPaused;
 	public event EventHandler OnStateChanged;
 
 	[field: SerializeField] public int ScoreToWin { get; private set; } = 5;
@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		PreparationTimer = PreparationTime;
-		//ReloadGame();
 	}
 
 	private void Update()
@@ -55,6 +54,7 @@ public class GameManager : MonoBehaviour
 		switch (State)
 		{
 			case GameState.WaitingForRediness:
+				YandexGame.FullscreenShow();
 				ReloadGame();
 				State = GameState.Preparation;
 				break;
@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
 
 				break;
 			case GameState.GameOver:
-				YandexGame.FullscreenShow();
 				break;
 		}
 	}
@@ -119,7 +118,7 @@ public class GameManager : MonoBehaviour
 
 	public void UnpauseGame()
 	{
-		OnGameUnaused?.Invoke();
+		OnGameUnPaused?.Invoke();
 		Time.timeScale = 1f;
 	}
 

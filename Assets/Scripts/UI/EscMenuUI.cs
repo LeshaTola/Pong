@@ -29,7 +29,7 @@ public class EscMenuUI : MonoBehaviour
 	private void Start()
 	{
 		gameManager.OnGamePaused += Show;
-		gameManager.OnGameUnaused += Hide;
+		gameManager.OnGameUnPaused += Hide;
 
 		Hide();
 	}
@@ -37,7 +37,7 @@ public class EscMenuUI : MonoBehaviour
 	private void OnDestroy()
 	{
 		gameManager.OnGamePaused -= Show;
-		gameManager.OnGameUnaused -= Hide;
+		gameManager.OnGameUnPaused -= Hide;
 	}
 
 	private void Show()
